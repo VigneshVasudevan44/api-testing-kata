@@ -1,20 +1,23 @@
 package com.booking.support;
 import com.booking.model.BookingRequest;
 import com.booking.model.Dates;
+import java.time.LocalDate;
 
 public class TestDataFactory {
+    public static BookingRequest validBookingRequest(int attempt) {
+        LocalDate checkin = LocalDate.now()
+                .plusYears(3)
+                .plusDays(attempt * 10L);
 
-    public static BookingRequest validBookingRequest() {
+        LocalDate checkout = checkin.plusDays(2);
+
         return new BookingRequest(
-                1,
-                "Jim",
-                "Brown",
+                7,
+                "Jack",
+                "Sparrow",
                 true,
-                new Dates(
-                        "2026-06-01",
-                        "2026-06-05"
-                ),
-                "jim.brown@example.com",
+                new Dates(checkin.toString(), checkout.toString()),
+                "jack.sparrow@example.com",
                 "01234567890"
         );
     }
